@@ -2,6 +2,7 @@ const fs = require("fs/promises");
 const path = require("path");
 const chalk = require("chalk");
 const dataValidator = require("./helpers/dataValidator");
+const checkExtension = require("./helpers/checkExtention");
 
 const createFile = async (fileName, content) => {
     const file = {
