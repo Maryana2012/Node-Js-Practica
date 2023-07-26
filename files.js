@@ -60,9 +60,10 @@ const getFileInfo = async (fileName) => {
             content
         }
         console.log(dataFile);
+    } else {
+        const notFile = chalk.red(`File ${fileName} isn't in this directory`);
+        console.log(notFile);
     }
-    const notFile = chalk.red(`File ${fileName} isn't in this directory`);
-    console.log(notFile);
 }
 
 module.exports = {
