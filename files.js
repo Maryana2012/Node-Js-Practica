@@ -41,13 +41,13 @@ console.log(dir);
 
 const getFileInfo = async (fileName) => {
     const pathName = path.join(__dirname, "./files", fileName);
-    const baseName  = path.basename(pathName);
-    
-    if (baseName.includes(fileName)) {
-        const indexName = fileName.indexOf('.');
-        const name = fileName.slice(0, indexName);
-        const extension = path.extname(pathName)
-        const content = await  fs.readFile(pathName)
+    const pathDir = path.join(__dirname, "./files");
+    const dir = await fs.readdir(pathDir);
+
+    if (dir.includes(fileName)) {
+        const extension = path.extname(fileName);
+        const name = path.basename(pathName, extension);
+        const content = await fs.readFile(pathName)
             .then(data =>  data.toString())
             .catch(err => console.log(err.message));
         
