@@ -41,15 +41,12 @@ console.log(dir);
 
 const getFileInfo = async (fileName) => {
     const pathName = path.join(__dirname, "./files", fileName);
-    const pathDir = path.join(__dirname, "./files");
-    const dir = await fs.readdir(pathDir);
+    const baseName  = path.basename(pathName);
     
-
-    if (dir.includes(fileName)) {
+    if (baseName.includes(fileName)) {
         const indexName = fileName.indexOf('.');
-
         const name = fileName.slice(0, indexName);
-        const extension = fileName.slice(indexName+1)
+        const extension = path.extname(pathName)
         const content = await  fs.readFile(pathName)
             .then(data =>  data.toString())
             .catch(err => console.log(err.message));
@@ -60,6 +57,7 @@ const getFileInfo = async (fileName) => {
             content
         }
         console.log(dataFile);
+
     } else {
         const notFile = chalk.red(`File ${fileName} isn't in this directory`);
         console.log(notFile);
