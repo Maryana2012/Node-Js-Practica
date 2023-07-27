@@ -47,10 +47,9 @@ const getFileInfo = async (fileName) => {
     if (dir.includes(fileName)) {
         const extension = path.extname(fileName);
         const name = path.basename(pathName, extension);
-        const content = await fs.readFile(pathName)
-            .then(data =>  data.toString())
-            .catch(err => console.log(err.message));
-        
+        const contentBuffer = await fs.readFile(pathName);
+        const content = contentBuffer.toString();
+                
         const dataFile = {
             name,
             extension,
