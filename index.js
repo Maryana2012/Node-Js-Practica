@@ -1,20 +1,19 @@
 const argv = require('yargs').argv;
-const {createFile, getFiles} = require("./files.js");
+const {createFile, getFiles, getInfo} = require("./files.js");
 
 // TODO: рефакторити
 function invokeAction({ action, fileName, content }) {
   switch (action) {
       case 'create':
           createFile(fileName, content);
-          
       break;
 
     case 'getFiles':
       getFiles() 
     break;
 
-    case '':
-      // ... id
+    case 'getInfo':
+      getInfo(fileName)
       break;
 
     default:
